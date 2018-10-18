@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html ng-app="printApp">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+        <meta name="author" content="Coderthemes">
+
+        <link rel="shortcut icon" href="assets/images/favicon_1.ico">
+
+        <title>Ayuda | Sistema de Control de Impresi&oacute;n</title>
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+
+        <script src="assets/js/modernizr.min.js"></script>
+
+    </head>
+
+
+    <body class="fixed-left" data-ng-controller="PrintController as print">
+
+        <!--        <div class="animationload">
+                    <div class="loader"></div>
+                </div>-->
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <div class="text-center">
+                        <a href="index.html" class="logo"><i class="ti-printer"></i><span> Printctrl</span></a>
+                    </div>
+                </div>
+
+                <!-- Button mobile view to collapse sidebar menu -->
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="container">
+                        <div class="">
+                            <div class="pull-left">
+                                <button class="button-menu-mobile open-left">
+                                    <i class="ion-navicon"></i>
+                                </button>
+                                <span class="clearfix"></span>
+                            </div>
+
+                            <form role="search" class="navbar-left app-search pull-left hidden-xs">
+                                <input type="text" placeholder="Buscar..." class="form-control">
+                                <a href="#"><i class="fa fa-search"></i></a>
+                            </form>
+
+
+                            <ul class="nav navbar-nav navbar-right pull-right">
+                                <li class="dropdown hidden-xs">
+                                    <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">1</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-lg">
+                                        <li class="notifi-title"><span class="label label-default pull-right">New 1</span>Notificaciones</li>
+                                        <li class="list-group nicescroll notification-list">
+                                            <!-- list item-->
+                                            <a ng-if="state == 'trial'" href="license.html" class="list-group-item">
+                                                <div class="media">
+                                                    <div class="pull-left p-r-10">
+                                                        <em class="fa fa-gift fa-2x text-primary"></em>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">Tiene 10 d&iacute;as de lic. de prueba</h5>
+                                                        <p class="m-0">
+                                                            <small>Click para ver detalles</small>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a ng-if="state == 'ok'" href="license.html" class="list-group-item">
+                                                <div class="media">
+                                                    <div class="pull-left p-r-10">
+                                                        <em class="fa fa-gift fa-2x text-success"></em>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">Licencia activada</h5>
+                                                        <p class="m-0">
+                                                            <small>Click para ver detalles</small>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a ng-if="state == 'no'" href="license.html" class="list-group-item">
+                                                <div class="media">
+                                                    <div class="pull-left p-r-10">
+                                                        <em class="fa fa-gift fa-2x text-danger"></em>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">La lic. de prueba caduc&oacute;</h5>
+                                                        <p class="m-0">
+                                                            <small>Click para ver detalles</small>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="help.html" class="list-group-item text-right">
+                                                <small class="font-600">Ver todo en la ayuda</small>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="hidden-xs">
+                                    <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
+                                </li>
+                                <li class="hidden-xs">
+                                    <a href="#" class="right-bar-toggle waves-effect waves-light"><i class="icon-arrow-up-circle"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle profile waves-effect waves-light" data-toggle="modal" data-target="#myModal"><img src="assets/images/users/avatar-3.jpg" alt="user-img" class="img-circle"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--/.nav-collapse -->
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar End -->
+
+
+            <!-- ========== Left Sidebar Start ========== -->
+
+            <div class="left side-menu">
+                <div class="sidebar-inner slimscrollleft">
+                    <!--- Divider -->
+                    <div id="sidebar-menu">
+                        <ul>
+
+                            <li class="text-muted menu-title">Administraci&oacute;n</li>
+
+                            <li class="has_sub">
+                                <a href="index.html" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span> </a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="printers.html" class="waves-effect"><i class="ti-printer"></i><span> Impresoras </span> </a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="stats.html" class="waves-effect"><i class="fa fa-line-chart"></i><span> Estad&iacute;sticas </span> </a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="history.html" class="waves-effect"><i class="md md-history"></i><span> Historial de Registros</span> </a>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="history-all-time.html" class="waves-effect"><i class="fa fa-search"></i> <span> Log Hist&oacute;rico &Uacute;nico </span> </a>
+                            </li>
+
+                            <li class="text-muted menu-title">M&aacute;s</li>                            
+
+                            <li class="has_sub">
+                                <a href="license.html" class="waves-effect"><i class="ti-gift"></i><span ng-if="state == 'ok'" class="label label-default pull-right">activada</span><span ng-if="state == 'no'" class="label label-danger pull-right">sin activar</span><span ng-if="state == 'trial'" class="label label-warning pull-right">prueba</span><span> Licencia </span></a>
+                            </li>							            
+
+                            <li class="has_sub">
+                                <a href="help.html" class="waves-effect active"><i class="fa  fa-question"></i><span> Ayuda</span></a>                                
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="contact.html" class="waves-effect"><i class="fa fa-envelope-o"></i><span> Contacto</span></a>                                
+                            </li>
+
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- Left Sidebar End --> 
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->                      
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="page-title">Ayuda</h4>
+                                <h5 class="pull-right" style="font-weight:bold">{{fecha| date: 'fullDate'}}  -  {{fecha| date: 'h:mm a'}}</h5>
+                                <ol class="breadcrumb">
+                                    <li>
+                                        <a href="index.html">PrintCtrl</a>
+                                    </li>
+                                    <li class="active">
+                                        Ayuda
+                                    </li>
+
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="p-20 p-t-0">
+                                                <!-- Question/Answer -->
+                                                <div class="faq-box">
+                                                    <h4 class="question" data-wow-delay=".1s">¿Qu&eacute; es PrintControl?</h4>
+                                                    <p class="answer">Un Sistema que lleva el control de las impresoras, lo que se imprime y la cantidad, as&iacute; como otros datos de inter&eacute;s; dirigido a los negocios de impresi&oacute;n en Cuba.</p>
+                                                </div>
+
+                                                <!-- Question/Answer -->
+                                                <div class="faq-box">
+                                                    <h4 class="question">Licencia</h4>
+                                                    <p class="answer">El sistema le da la posibilidad de utilizarlo gratuitamente durante 10 d&iacute;as para que Ud. compruebe que funciona correctamente. Pasado ese tiempo si no adquiere una licencia, el sistema dejar&aacute; de funcionar.</p>
+                                                </div>
+
+                                                <!-- Question/Answer -->
+                                                <div class="faq-box">
+                                                    <h4 class="question">¿Qu&eacute; hago para recibir la licencia?</h4>
+                                                    <p class="answer">Para recibir la licencia tiene que enviar el no. serial exactamente igual como se muestra en la p&aacute;gina de <a href="license.html" target="_blank">Licencia</a>.</p>
+                                                </div>
+
+
+                                                <!-- Question/Answer -->
+                                                <div class="faq-box">
+                                                    <h4 class="question">Reporte de errores, sugerencia, etc.</h4>
+                                                    <p class="answer">Para mejorar la aplicaci&oacute;n puede mandarnos sus sugerencias, si encuentra que algo no est&aacute; funcionando como debe de ser, si desea una versi&oacute;n personalizada o alguna otra cosa, no dude en escribirnos.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/col-md-5 -->
+
+                                        <div class="col-md-6">
+                                            <div class="p-20 p-t-0">
+                                                <!-- Question/Answer -->
+                                                <div class="faq-box">
+                                                    <h4 class="question">¿C&oacute;mo se instala?</h4>
+                                                    <p class="answer">Consta de 2 instaladores, se instala en el orden que se especifica en el nombre de cada uno. Despu&eacute;s de instalado todo se crea un acceso directo en el escritorio.</p>
+                                                </div>
+
+                                                <!-- Question/Answer -->
+                                                <div class="faq-box">
+                                                    <h4 class="question">¿C&oacute;mo contacto con el desarrollador?</h4>
+                                                    <p class="answer">Me puedes contactar a trav&eacute;s del e-mail: tufao.agencia@gmail.com y m&oacute;vil 55016711, si el tel&eacute;fono da apagado escr&iacute;bame al correo.</p>
+                                                </div>
+
+                                                <!-- Question/Answer -->
+                                                <div class="faq-box">
+                                                    <h4 class="question">¿C&oacute;mo activo la aplicaci&oacute;n?</h4>
+                                                    <p class="answer">En la siguiente ruta: <span style="font-style: italic">"C:\Program Files (x86)\CopyColorInc\printcontrol\Activador - Control de Impresión.exe"</span> Click derecho: <span style="font-weight: bold">Ejecute como Administrador</span> e introduzca la lincencia recibida.</p>
+                                                </div>
+
+                                                <!-- Question/Answer -->
+                                                <div class="faq-box">
+                                                    <h4 class="question">¿C&oacute;mo se realizar&aacute; el pago?</h4>
+                                                    <p class="answer">En efectivo o transferencias entre tarjetas magn&eacute;ticas.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/col-md-5-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- sample modal content -->
+                        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <!--<p style="inline-box-align: inherit"><img src="assets/images/favicon_1.ico" alt="image" class="img-responsive img-rounded thumb-sm" width="200">Sistema</p>-->
+                                        <h4 class="modal-title" id="myModalLabel">PrintControl - Sistema de Control de Impresi&oacute;n</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4>¿Qu&eacute; es?</h4>                                        
+                                        <p>Un Sistema que lleva el control de las impresoras, lo que se imprime y cantidad, as&iacute; como otros datos de inter&eacute;s; dirigido a los negocios de impresi&oacute;n en Cuba.</p>
+                                        <p>Pru&eacute;belo. Tiene 10 d&iacute;as de uso <span style="color: #000000">gratis</span>.</p>
+                                        <p>Cualquier error, sugerencia, duda e incluso una petici&oacute;n de versi&oacute;n a su medida no dude en contactarme:</p>
+                                        <span><i class="fa fa-envelope-o"></i> tufao.agencia@gmail.com | </span>
+                                        <span><i class="md md-local-phone"></i> 55016711 </span>
+                                        <!--                                        <hr>
+                                                                                <h4>Overflowing text to show scroll behavior</h4>
+                                                                                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!--<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>-->
+                                        <button type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">Aceptar</button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <footer class="footer">
+                    &copy; <span>2018 </span>
+                    <span> PrintControl v1.0 - <i class="fa fa-envelope-o"></i> tufao.agencia@gmail.com </span>
+                </footer>
+
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+            <!-- Right Sidebar -->
+            <div class="side-bar right-bar nicescroll">
+                <h4 class="text-center">Top Mejores 5 D&iacute;as</h4>
+                <div class="contact-list nicescroll">
+                    <ul class="list-group contacts-list">
+                        <li class="list-group-item" data-ng-repeat="day in daysOfWork| orderBy: '-total'  | limitTo:5">
+                            <span>{{$index + 1}} - {{day.date| date: 'MMMM d, y'}}</span>
+                            <span class="label label-primary pull-right">{{day.total}}</span>
+
+                            <span class="clearfix"></span>
+                        </li>
+                    </ul>  
+                </div>
+                <h4 class="text-center">Top Mejores 5 Meses del Año</h4>
+                <div class="contact-list nicescroll">
+                    <ul class="list-group contacts-list">
+                        <li class="list-group-item" data-ng-repeat="month in months| orderBy: '-total'  | limitTo:5">
+                            <span>{{$index + 1}} - {{month.month}}</span>
+                            <span class="label label-primary pull-right">{{month.total}}</span>
+
+                            <span class="clearfix"></span>
+                        </li>
+                    </ul>  
+                </div>
+            </div>
+            <!-- /Right-bar -->
+
+        </div>
+        <!-- END wrapper -->
+
+        <script>
+                    var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/detect.js"></script>
+        <script src="assets/js/fastclick.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.blockUI.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/jquery.nicescroll.js"></script>
+        <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+        <!-- ANGULAR  -->
+        <script src="assets/js/angular.min.js"></script>
+        <script src="assets/js/angular-animate.js"></script>
+        <script src="assets/js/angular-locale_es-es.js"></script>
+        <script src="assets/js/detect2.js"></script>
+
+        <script src="assets/plugins/peity/jquery.peity.min.js"></script>
+        <script src="assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+        <script src="assets/js/help.js"></script>
+
+
+
+
+
+
+    </body>
+
+    <!-- Mirrored from coderthemes.com/ubold_1.1/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Nov 2015 02:13:03 GMT -->
+</html>
