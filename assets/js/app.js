@@ -228,13 +228,13 @@ app.controller('PrintController', ['$scope', '$window', '$http', '$filter', '$q'
             new Morris.Bar({
                 element: 'morris-bar-stacked',
                 data: [
-                    {day: $scope.monday.isToday ? 'Lun (Hoy)' : 'Lun', value: $scope.monday.total},
-                    {day: $scope.tuesday.isToday ? 'Mar (Hoy)' : 'Mar', value: $scope.tuesday.total},
-                    {day: $scope.wednesday.isToday ? 'Mi\u00e9r (Hoy)' : 'Mi\u00e9r', value: $scope.wednesday.total},
-                    {day: $scope.thursday.isToday ? 'Juev (Hoy)' : 'Juev', value: $scope.thursday.total},
-                    {day: $scope.friday.isToday ? 'Vier (Hoy)' : 'Vier', value: $scope.friday.total},
-                    {day: $scope.saturday.isToday ? 'S\u00e1b (Hoy)' : 'S\u00e1b', value: $scope.saturday.total},
-                    {day: $scope.sunday.isToday ? 'Dom (Hoy)' : 'Dom', value: $scope.sunday.total}
+                    {day: $scope.monday.isToday ? 'Lun (Hoy)' : 'Lun', value: 150},
+                    {day: $scope.tuesday.isToday ? 'Mar (Hoy)' : 'Mar', value: 120},
+                    {day: $scope.wednesday.isToday ? 'Mi\u00e9r (Hoy)' : 'Mi\u00e9r', value: 110},
+                    {day: $scope.thursday.isToday ? 'Juev (Hoy)' : 'Juev', value: 99},
+                    {day: $scope.friday.isToday ? 'Vier (Hoy)' : 'Vier', value: 200},
+                    {day: $scope.saturday.isToday ? 'S\u00e1b (Hoy)' : 'S\u00e1b', value: 136},
+                    {day: $scope.sunday.isToday ? 'Dom (Hoy)' : 'Dom', value: 188}
                 ],
                 xkey: 'day',
                 ykeys: ['value'],
