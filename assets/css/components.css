@@ -1049,6 +1049,22 @@ File: Components
 .table > tfoot > tr.active > th {
     background-color: #f4f8fb !important;
 }
+.table-striped-special > tbody > tr:nth-of-type(odd),
+.table-hover > tbody > tr:hover,
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+    background-color: #f4f8fb;
+}
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -2018,4 +2034,49 @@ a.editable-click:hover {
 button.confirm {
     background-color: #5fbeaa !important;
     box-shadow: none !important;
+}
+
+/*Floating Button to personalized Calculate */
+.row-selected{
+    background-color: unset;
+    background-color: #a2aec7 !important;
+    color: #2f2b2b;
+}
+.p-calculate{
+    padding: 14px 9px 0px 20px;
+    color: steelblue;
+}
+.contact-list-calculate{
+    max-height: 320px;
+    padding: 0px 8px 2px 8px;
+}
+.float-tool{
+    position:fixed;
+    right:75px;
+    z-index: 10000;
+    bottom: 60px;
+}
+.float{
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:30px;
+    right:18px;
+    background-color:#0C9;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 10000;
+}
+
+a.float{
+    color: white;
+}
+a.float:hover{
+    color: black;
+}            
+.my-float{
+    margin-top:17px;
+    margin-left:1px;
 }

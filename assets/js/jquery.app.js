@@ -167,6 +167,16 @@ function($) {
           e.preventDefault();
           $('#wrapper').toggleClass('right-bar-enabled');
       }); 
+      // right side-bar personalized calculate toggle
+      $('.right-bar-calculate-toggle').on('click', function(e){
+          e.preventDefault();
+          $('#wrapper').toggleClass('right-bar-calculate-enabled');
+      }); 
+      // right side-bar personalized calculate toggle
+      $('.right-bar-calculate-days-toggle').on('click', function(e){
+          e.preventDefault();
+          $('#wrapper').toggleClass('right-bar-calculate-days-enabled');
+      }); 
 
       
     },

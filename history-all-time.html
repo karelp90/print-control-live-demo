@@ -254,6 +254,14 @@
 
                         </div> <!-- end row -->
 
+                        
+                    <!-- Floating Button Calculate -->
+                    <span id="float-tool" class="float-tool" data-toggle="tooltip" data-placement="left" title="Calcular datos"></span>
+                    <a id="calculateData" href="#" class="right-bar-calculate-toggle float waves-effect waves-light">
+                        <i class="fa fa-calculator fa-2x my-float"></i>
+                    </a>
+                    <!-- end Floating Button Calculate --> 
+
                         <!-- sample modal content -->
                         <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -287,8 +295,8 @@
                 </div> <!-- content -->
 
                 <footer class="footer">
-                    &copy; <span>2018 </span>
-                    <span> PrintControl v1.0 - <i class="fa fa-envelope-o"></i> tufao.agencia@gmail.com </span>
+                    &copy; <span>{{year}}</span>
+                    <span> PrintControl v1.1 - <i class="fa fa-envelope-o"></i> tufao.agencia@gmail.com </span>
                 </footer>
 
             </div>
@@ -326,12 +334,52 @@
             </div>
             <!-- /Right-bar -->
 
+            <!-- Right Sidebar to Personalized Calculate-->
+            <div class="side-bar right-bar-calculate nicescroll">
+                <h4 class="text-center">C&aacute;lculo personalizado</h4>
+                <!-- <h4 class="text-customactivated text-center"><i class="fa fa-file-text-o"></i><i class="fa fa-arrows-h"></i><i class="fa fa-dollar"></i></h4> -->
+                
+                <div class="contact-list-calculate nicescroll">
+                        <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Color</th>
+                                            <th>P&aacute;ginas</th>
+                                            <th>Hojas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="day in listRecordToCalculate">
+                                            <td>{{$index + 1}}</td>
+                                            <td style="text-align: center"><span ng-if="day.grayscale!=='GRAYSCALE'" class="label label-pink">S&iacute;</span><span ng-if="day.grayscale==='GRAYSCALE'" class="label label-inverse">No</span></td>
+                                            <td style="text-align: center">{{day.totalPages}}</td>
+                                            <td style="text-align: center">{{day.sheets}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div> 
+                </div>
+
+                <div class="row calculate">
+                        <div class="col-sm-6 col-md-6 col-lg-6" style="text-align: right">Total:</div>
+                        <div class="col-sm-3 col-md-3 col-lg-3">{{totalPagesReport}}</div>
+                        <div class="col-sm-3 col-md-3 col-lg-3">{{totalSheetsReport}}</div>
+                </div>
+                <p class="p-calculate" ng-if="listRecordToCalculate.length===0">Click en las filas para sumar sus datos.</p>
+
+            </div>
+            <!-- /to Personalized Calculate -->
+
         </div>
         <!-- END wrapper -->
 
         <script>
                     var resizefunc = [];
         </script>
+
+
 
         <!-- jQuery  -->
         <script src="assets/js/jquery.min.js"></script>
@@ -349,7 +397,7 @@
         <script src="assets/js/angular.min.js"></script>
         <script src="assets/js/angular-animate.js"></script>
         <script src="assets/js/angular-locale_es-es.js"></script>
-        <!--<script src="assets/js/detect2.js"></script>-->
+        <script src="assets/js/detect2.js"></script>
 
         <!--DataTables - AngularJS-->        
         <script src="assets/plugins/datatables/ui-bootstrap-tpls.min.js"></script>
@@ -363,6 +411,16 @@
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
         <script src="assets/js/history-all-time.js"></script>
+
+        <script>
+                $(document).ready(function(){
+                  $('#calculateData').hover(function(){
+                    $('#float-tool').tooltip('show');
+                    }, function(){
+                        $('#float-tool').tooltip('hide');
+                  });
+                });
+        </script>
 
 
     </body>

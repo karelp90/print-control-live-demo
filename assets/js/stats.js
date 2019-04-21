@@ -18,6 +18,7 @@ app.controller('PrintController', ['$scope', '$http', '$filter', function ($scop
         var pcs = [];
         var data = [];
         var t = {};
+        var cont = 0;
         var dataMonths = [
             {y: 'En', a: t},
             {y: 'Feb', a: t},
@@ -226,7 +227,7 @@ app.controller('PrintController', ['$scope', '$http', '$filter', function ($scop
                     addUser($scope.logsAllTime[i].user, totalPages);
                 else {
                     users[pos].pages = users[pos].pages + totalPages;
-                    users[pos].pc = (users[pos].pages * 100 / $scope.totalAllTime).toFixed(2)
+                    users[pos].pc = (users[pos].pages * 100 / $scope.totalPages).toFixed(2)
                 }
                 //pc
                 var pos2 = isPCexist($scope.logsAllTime[i].pc);
@@ -234,7 +235,7 @@ app.controller('PrintController', ['$scope', '$http', '$filter', function ($scop
                     addPC($scope.logsAllTime[i].pc, totalPages);
                 else {
                     pcs[pos2].pages = pcs[pos2].pages + totalPages;
-                    pcs[pos2].pc = (pcs[pos2].pages * 100 / $scope.totalAllTime).toFixed(2)
+                    pcs[pos2].pc = (pcs[pos2].pages * 100 / $scope.totalPages).toFixed(2)
                 }
                 j++;
             }
@@ -262,7 +263,16 @@ app.controller('PrintController', ['$scope', '$http', '$filter', function ($scop
                 xkey: 'y',
                 ykeys: ['a'],
                 labels: ['Hojas'],
-
+                xLabelFormat: function (date) {
+                   var hours = date.getHours();
+                   var minutes = date.getMinutes();
+                   var ampm = hours >= 12 ? 'pm' : 'am';
+                   hours = hours % 12;
+                   hours = hours ? hours : 12; // the hour '0' should be '12'
+                   minutes = minutes < 10 ? '0'+minutes : minutes;
+                   var strTime = hours + ':00 ' + ampm;
+                   return strTime;
+                 },
                 fillOpacity: ['0.1'],
                 pointFillColors: ['#ffffff'],
                 pointStrokeColors: ['#999999'],
@@ -299,13 +309,13 @@ app.controller('PrintController', ['$scope', '$http', '$filter', function ($scop
         var promise7 = getStatsMonthsOrAllTime('count')
         promise7.then(function (result) {
             $scope.totalAllTime = result;
-            $scope.pagesPerDay = (result / $scope.dofu).toFixed(2);
+            $scope.pagesPerDay = ($scope.totalPages / $scope.dofu).toFixed(2);
             $scope.sheetsPerDay = (result / $scope.dofu).toFixed(2);
 
-            $scope.pcCountGrayScale = ($scope.countGrayScale * 100 / result).toFixed(2);
-            $scope.pcCountColor = ($scope.countColor * 100 / result).toFixed(2);
-            $scope.pcCountSimple = ($scope.countSimple * 100 / result).toFixed(2);
-            $scope.pcCountDuplex = ($scope.countDuplex * 100 / result).toFixed(2);
+            $scope.pcCountGrayScale = ($scope.countGrayScale * 100 / $scope.totalPages).toFixed(2);
+            $scope.pcCountColor = ($scope.countColor * 100 / $scope.totalPages).toFixed(2);
+            $scope.pcCountSimple = ($scope.countSimple * 100 / $scope.totalPages).toFixed(2);
+            $scope.pcCountDuplex = ($scope.countDuplex * 100 / $scope.totalPages).toFixed(2);
         });
 
         function getStatsMonthsOrAllTime(type) {

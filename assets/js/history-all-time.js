@@ -9,12 +9,16 @@ app.controller('PrintController', ['$scope', '$window', '$compile', '$http', '$f
         $scope.logsAllTime = [];
         $scope.dofu = 0;
         $scope.totalPages = 0;
+        $scope.totalPagesReport = 0;
+        $scope.totalSheetsReport = 0;
         $scope.countAllTime = 0;
         $scope.daysOfWork = [];
         $scope.months = [];
+        $scope.listRecordToCalculate = [];
 
-        //Definición de métodos
+        //Definiciï¿½n de mï¿½todos
         $scope.loadAllTimeRecords = loadAllTimeRecords;
+        $scope.calculate = calculate;
 
         $scope.dataTableOpt = {
             "aLengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]]
@@ -27,14 +31,16 @@ app.controller('PrintController', ['$scope', '$window', '$compile', '$http', '$f
                     success(function (data) {
                         $scope.logsAllTime = data;
 
-                        for (var i = 0; i < $scope.logsAllTime.length; i++) {                            
+                        for (var i = 0; i < $scope.logsAllTime.length; i++) {
+                            $scope.logsAllTime[i].checked = false;                        
                             var totalPages = $scope.logsAllTime[i].pages * $scope.logsAllTime[i].copies;
                             $scope.totalPages = $scope.totalPages + totalPages;
                         }
 
                         var iEl = angular.element(document.querySelector('#tabletoremove'));
                         iEl.empty();
-                        var sa = $compile("<table class='table table-striped' ui-jq='dataTable' ui-options='dataTableOpt'><thead><tr><th>No.</th><th>Fecha</th><th>Usuario</th><th>P&aacute;ginas</th><th>Copias</th><th>Total P&aacute;g</th><th>Total Hojas</th><th>Impresora</th><th>Documento</th><th>PC</th><th>Formato</th><th>Color</th><th>Doble Cara</th></tr></thead><tbody><tr data-ng-repeat=\"day in logsAllTime\">\n\
+                        var sa = $compile("<table class='table table-striped-special' ui-jq='dataTable' ui-options='dataTableOpt'><thead><tr><th style=\"display:none\"></th><th>No.</th><th>Fecha</th><th>Usuario</th><th>P&aacute;ginas</th><th>Copias</th><th>Total P&aacute;g</th><th>Total Hojas</th><th>Impresora</th><th>Documento</th><th>PC</th><th>Formato</th><th>Color</th><th>Doble Cara</th></tr></thead><tbody><tr ng-click=\"calculate(day)\" ng-class=\"{'row-selected': day.checked}\" data-ng-repeat=\"day in logsAllTime | orderBy: '-time'\">\n\
+<td style=\"display:none\"><input type=\"checkbox\" ng-model=\"day.checked\" ng-checked=\"day.checked\"></td>\n\
 <td>{{$index + 1}}</td>\n\
 <td>{{day.time| date: 'MMMM d, y'}}</td>\n\
 <td>{{day.user}}</td>\n\
@@ -122,6 +128,29 @@ app.controller('PrintController', ['$scope', '$window', '$compile', '$http', '$f
                             }
                         }
                     });
+        }
+
+        function calculate(day){
+            $scope.totalPagesReport = 0;
+            $scope.totalSheetsReport = 0;
+            if(day.checked){
+                $scope.listRecordToCalculate.splice($scope.listRecordToCalculate.indexOf(day),1);
+                day.checked = false;
+            } else{
+                day.checked = true;
+                $scope.listRecordToCalculate.push(day);
+            }
+            for (var i = 0; i < $scope.listRecordToCalculate.length; i++) {         
+                var totalPages = $scope.listRecordToCalculate[i].pages * $scope.listRecordToCalculate[i].copies;
+                $scope.listRecordToCalculate[i].totalPages = totalPages;
+                $scope.totalPagesReport = $scope.totalPagesReport + totalPages;
+
+                var sheets = $scope.listRecordToCalculate[i].duplex==="DUPLEX" ? (($scope.listRecordToCalculate[i].pages * $scope.listRecordToCalculate[i].copies%2==0)? $scope.listRecordToCalculate[i].pages * $scope.listRecordToCalculate[i].copies/2 :(($scope.listRecordToCalculate[i].pages * $scope.listRecordToCalculate[i].copies)-1)/2+1) : $scope.listRecordToCalculate[i].pages * $scope.listRecordToCalculate[i].copies;
+                $scope.listRecordToCalculate[i].sheets = sheets;
+                $scope.totalSheetsReport = $scope.totalSheetsReport + sheets;
+            }
+            console.log($scope.listRecordToCalculate);
+            console.log($scope.listRecordToCalculate.length);
         }
 
     }]);

@@ -1562,12 +1562,29 @@ body.fixed-left .side-menu.left {
 }
 #wrapper.right-bar-enabled .right-bar {
   right: 0;
+}right-bar
+#wrapper.-enabled .left-layout {
+  left: 0;
 }
-#wrapper.right-bar-enabled .left-layout {
+#wrapper.right-bar-calculate-enabled .right-bar-calculate {
+  right: 0;
+}right-bar-calculate
+#wrapper.-enabled .left-layout {
+  left: 0;
+}
+#wrapper.right-bar-calculate-days-enabled .right-bar-calculate-days {
+  right: 0;
+}right-bar-calculate-days
+#wrapper.-enabled .left-layout {
   left: 0;
 }
 /* Right sidebar */
 .side-bar.right-bar {
+  float: right !important;
+  right: -266px;
+  top: 60px;
+}
+.side-bar.right-bar-calculate, side-bar.right-bar-calculate-days {
   float: right !important;
   right: -266px;
   top: 60px;
@@ -1585,13 +1602,20 @@ body.fixed-left .side-menu.left {
   transition: all 200ms ease-out;
   width: 240px;
 }
-.right-bar {
+.right-bar, .right-bar-calculate, .right-bar-calculate-days {
   background: #ffffff !important;
   z-index: 99 !important;
 }
 .right-bar h4 {
   border-bottom: 1px solid #eeeeee;
   padding-bottom: 10px;
+}
+.right-bar-calculate .calculate, .right-bar-calculate-days .calculate {
+	border-bottom: 2px solid #665f5f;
+	padding-bottom: 3px;
+  border-top: 2px solid #665f5f;
+  font-size: 15px;
+  color: #505458;
 }
 .contact-list {
   max-height: 600px;

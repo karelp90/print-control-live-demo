@@ -5,7 +5,7 @@ Email: coderthemes@gmail.com
 File: Responsive
 */
 @media only screen and (max-width: 6000px) and (min-width: 700px) {
-  .wrapper.right-bar-enabled .right-bar {
+  .wrapper.right-bar-enabled .right-bar, .wrapper.right-bar-enabled-calculate .right-bar-calculate, .wrapper.right-bar-enabled-calculate-days .right-bar-calculate-days {
     right: 0;
     z-index: 99;
   }
