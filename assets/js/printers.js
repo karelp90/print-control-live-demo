@@ -235,8 +235,8 @@ app.controller('PrintController', ['$scope', '$window', '$http', '$filter', '$q'
                 console.info($scope.cantByDaysOfWeek)
 
             } else {
-                $scope.monday = {total: $scope.total, isToday: true, date: today};
-                $scope.totalOfWeek = $scope.total;
+                $scope.monday = {total: 95, isToday: true, date: today};
+                $scope.totalOfWeek = 95;
             }
 
             var days = [$scope.monday.isToday ? 'Lun (Hoy)' : 'Lun', $scope.tuesday.isToday ? 'Mar (Hoy)' : 'Mar',
@@ -298,43 +298,43 @@ app.controller('PrintController', ['$scope', '$window', '$http', '$filter', '$q'
             switch (day) {
                 case 0:
                     if ($scope.monday.hasOwnProperty('date'))
-                        return searchTotalByPrinterWeek(printer, $scope.monday.date);
+                        return 54;// searchTotalByPrinterWeek(printer, $scope.monday.date);
                     else
                         return;
                     break;
                 case 1:
                     if ($scope.tuesday.hasOwnProperty('date'))
-                        return searchTotalByPrinterWeek(printer, $scope.tuesday.date);
+                        return 69;//searchTotalByPrinterWeek(printer, $scope.tuesday.date);
                     else
                         return;
                     break;
                 case 2:
                     if ($scope.wednesday.hasOwnProperty('date'))
-                        return searchTotalByPrinterWeek(printer, $scope.wednesday.date);
+                        return 215;//searchTotalByPrinterWeek(printer, $scope.wednesday.date);
                     else
                         return;
                     break;
                 case 3:
                     if ($scope.thursday.hasOwnProperty('date'))
-                        return searchTotalByPrinterWeek(printer, $scope.thursday.date);
+                        return 159;//searchTotalByPrinterWeek(printer, $scope.thursday.date);
                     else
                         return;
                     break;
                 case 4:
                     if ($scope.friday.hasOwnProperty('date'))
-                        return searchTotalByPrinterWeek(printer, $scope.friday.date);
+                        return 29;//searchTotalByPrinterWeek(printer, $scope.friday.date);
                     else
                         return;
                     break;
                 case 5:
                     if ($scope.saturday.hasOwnProperty('date'))
-                        return searchTotalByPrinterWeek(printer, $scope.saturday.date);
+                        return 56;//searchTotalByPrinterWeek(printer, $scope.saturday.date);
                     else
                         return;
                     break;
                 case 6:
                     if ($scope.sunday.hasOwnProperty('date'))
-                        return searchTotalByPrinterWeek(printer, $scope.sunday.date);
+                        return 95;//searchTotalByPrinterWeek(printer, $scope.sunday.date);
                     else
                         return;
                     break;
